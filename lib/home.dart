@@ -21,12 +21,14 @@ class _HomePageState extends State<HomePage> {
   decrementCounter() async {
     int newValue = contador - 1;
 
-    this.setState(() {
-      contador = newValue;
-    });
+    if (newValue >= 0) {
+      this.setState(() {
+        contador = newValue;
+      });
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('counter', newValue);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setInt('counter', newValue);
+    }
   }
 
   incrementCounter() async {
